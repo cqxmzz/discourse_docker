@@ -110,11 +110,13 @@ run:
       cmd:
         - git reset --hard
         - git clean -f
-        - git remote add origin-cqxmzz https://github.com/cqxmzz/discourse.git
-        - git remote set-branches --add origin-cqxmzz master
-        - git pull origin-cqxmzz master
-        - git fetch origin-cqxmzz $version
+        - git remote remove origin
+        - git remote add origin https://github.com/cqxmzz/discourse.git
+        - git remote set-branches --add origin master
+        - git pull origin master
+        - git fetch origin $version
         - git checkout $version
+        - git branch --set-upstream-to=origin/master master
         - mkdir -p tmp/pids
         - mkdir -p tmp/sockets
         - touch tmp/.gitkeep
