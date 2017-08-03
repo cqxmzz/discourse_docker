@@ -18,7 +18,7 @@ env:
 
 params:
   # SSH key is required for remote access into the container
-  version: tests-passed
+  version: master
 
   home: /var/www/discourse
   upload_size: 10m
@@ -110,9 +110,10 @@ run:
       cmd:
         - git reset --hard
         - git clean -f
-        - git remote set-branches --add origin master
-        - git pull
-        - git fetch origin $version
+        - git remote add origin-cqxmzz https://github.com/cqxmzz/discourse.git
+        - git remote set-branches --add origin-cqxmzz master
+        - git pull origin-cqxmzz master
+        - git fetch origin-cqxmzz $version
         - git checkout $version
         - mkdir -p tmp/pids
         - mkdir -p tmp/sockets
